@@ -1,3 +1,5 @@
+import { padList1 } from './padList';
+
 export default function Pad(props) {
   window.onkeypress = handleKeyPress;
   
@@ -12,7 +14,16 @@ export default function Pad(props) {
   }
   
   function playSound(soundId) {
+    pauseAll()
     document.querySelector("audio#" + soundId).play()
+  }
+
+  function pauseAll() {
+    padList1.forEach(item => {
+      let sound = document.querySelector("audio#" + item.name)
+      sound.pause()
+      sound.currentTime = 0
+    })
   }
   
   return (
